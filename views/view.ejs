@@ -11,13 +11,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <title>MCOV Schnelltestzentrum | Termin Buchen </title>
+    <style>
+        h2, p, img{
+            text-align: center;
+            justify-content: center;
+            justify-items: center;
+            display: block;
+            margin-left: auto;
+             margin-right: auto;
+    
+        }
+
+
+    </style>
 </head>
 <body>
-       <div class="Container">
-           <h1>Willkommen <%= userdata.Nachname %> !  </h1>
-           <h1>Ihre Temin findet um <%= userdata.Uhrzeit %> Uhr statt </h1>
+    <div class="form-style-5">
+           <h2>Willkommen <%= userdata.Nachname %> !  </h2>
+           <p><%= userdata.date %></p>
+           <p>Ihr Temin findet um <%= userdata.Uhrzeit %> Uhr statt </p>
+           <p>Sie können zukünftig auch ohne weitere Anmeldung zum Testen erscheinen. Bringen Sie bitte diesen QR COde mit!</p>
+           <p>Die Bestätigung haben Sie ebenfalls via E-Mail erhalten.</p>
+
             <img src="<%= qr_code %>" alt="QR Code">
-            <h1><%= id %> </h1>
+            <p><%= id %> </p>
        </div> 
 </body>
 </html>
