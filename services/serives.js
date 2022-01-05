@@ -34,7 +34,7 @@ exports.neuUser = async (req,res,next) =>{
                 Vorname:req.body.Vorname,
                 Nachname:req.body.Nachname,
                 birthday:birthday ,
-                email:birthday ,
+                email: req.body.email,
                 Strasse:req.body.Strasse,
                 Postleitzahl:req.body.Postleitzahl,
                 Ort:req.body.Ort

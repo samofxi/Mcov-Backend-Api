@@ -12,7 +12,8 @@ const user = new mongoose.Schema({
     birthday:{type:String, required:true},
     Strasse:{type:String, required:true},
     Postleitzahl:{type:String, required:true},
-    Ort:{type:String, required:true}
+    Ort:{type:String, required:true},
+    Ergebnis:{type:String}
 
 }
 )
