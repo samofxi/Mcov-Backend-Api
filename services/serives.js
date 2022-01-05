@@ -40,7 +40,7 @@ exports.neuUser = async (req,res,next) =>{
                 Ort:req.body.Ort
             })
             .then(function(data) {qrcode.toDataURL(id,(err,src) =>{
-                res.redirect(`http://localhost:5000/termin/${id}`)
+                res.redirect(`https://mcov.herokuapp.com/termin/${id}`)
              })});
              let code = await qrcode.toDataURL(id);
 
