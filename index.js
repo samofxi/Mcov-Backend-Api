@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const {check, validationResult}= require('express-validator');
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 connectDB();
 const app = express();
 app.set('view engine', 'ejs');
