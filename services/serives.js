@@ -57,7 +57,7 @@ exports.neuUser = async (req,res,next) =>{
              
               // send mail with defined transport object
               let info = await transporter.sendMail({
-                from: '"MCON Schnelltestzentrum" <info@salman-mohammad.com>', // sender address
+                from: '"MCON Schnelltestzentrum" <noreply@mcov.de>', // sender address
                 to: req.body.email, // list of receivers
                 subject: "Ihre Terminbestätigung MCOV Schnelltest", // Subject line
                 text: code, // plain text body
