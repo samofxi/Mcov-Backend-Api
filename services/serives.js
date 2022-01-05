@@ -37,7 +37,8 @@ exports.neuUser = async (req,res,next) =>{
                 email: req.body.email,
                 Strasse:req.body.Strasse,
                 Postleitzahl:req.body.Postleitzahl,
-                Ort:req.body.Ort
+                Ort:req.body.Ort,
+                Ergebnis: ''
             })
             .then(function(data) {qrcode.toDataURL(id,(err,src) =>{
                 res.redirect(`https://mcov.herokuapp.com/termin/${id}`)
