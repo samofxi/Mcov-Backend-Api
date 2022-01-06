@@ -47,8 +47,8 @@ exports.neuUser = async (req,res,next) =>{
 
              let transporter = nodemailer.createTransport({
                 host: "smtp.strato.de",
-                port: 587,
-                secure: false, // true for 465, false for other ports
+                port: 465,
+                secure: true, // true for 465, false for other ports
                 auth: {
                   user: process.env.user, // generated ethereal user
                   pass: process.env.pass, // generated ethereal password
