@@ -1,0 +1,20 @@
+<% for(var i = 0; i < users.length; i++) { %>
+<tr>
+    <td><%= i + 1 %></td>
+    <td><%= users[i].Nachname %></td>
+    <td><%= users[i].Vorname %></td>
+    <td><%= users[i].Uhrzeit %></td>
+    <td><%= users[i].date %></td>
+    <td>
+        <a href="/update-user?id=<%= users[i]._id %> " class="btn border-shadow update">
+            <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+        </a>
+        <a  class="btn border-shadow delete" data-id=<%= users[i]._id%> disabled >
+            <span class="text-gradient"><i class="fas fa-times"></i></span>
+        </a>
+        <a  class="btn border-shadow check" data-value="<%= users[i].status == 'checked-in'?'checked-out':'checked-in' %>" data-id='<%= users[i]._id%>' >
+            <span class="text-gradient"> <%= users[i].status == 'checked-in'?'auschecken':'Einchecken' %> </span>
+        </a>
+    </td>
+</tr>
+<% } %>

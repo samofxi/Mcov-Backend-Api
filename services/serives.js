@@ -12,15 +12,14 @@ const { findOne } = require('../models/user.model');
 const jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
 const PDFDocument = require('pdfkit');
-const hbs = require('nodemailer-express-handlebars')
+const hbs = require('nodemailer-express-handlebars');
+const history = require('../models/history');
 
 
 exports.homeRoutes =   (req, res)=>{
     res.render('index')
 } 
-
 exports.neuUser = async (req,res,next) =>{
-            
         console.log(req.body);
         let id = crypto.randomBytes(6).toString("hex");
         let birthday =  `${req.body.birth_date_day}.${req.body.birth_date_month}.${req.body.birth_date_year} `
@@ -38,10 +37,11 @@ exports.neuUser = async (req,res,next) =>{
                 Strasse:req.body.Strasse,
                 Postleitzahl:req.body.Postleitzahl,
                 Ort:req.body.Ort,
-                Ergebnis: ''
-            })
+                status: 'checked-out'
+            }
+            )
             .then(function(data) {qrcode.toDataURL(id,(err,src) =>{
-                res.redirect(`https://mcov.herokuapp.com/termin/${id}`)
+                res.redirect(`https://termin.mcov.de/termin/${id}`)
              })});
              let code = await qrcode.toDataURL(id);
 
@@ -53,8 +53,7 @@ exports.neuUser = async (req,res,next) =>{
                   user: process.env.user, // generated ethereal user
                   pass: process.env.pass, // generated ethereal password
                 },
-              });
-             
+              }); 
               // send mail with defined transport object
               let info = await transporter.sendMail({
                 from: '"MCON Schnelltestzentrum" <noreply@mcov.de>', // sender address
@@ -84,69 +83,29 @@ exports.neuUser = async (req,res,next) =>{
         } catch (error) {
             res.send(error)
         }
-        
-
         const error = validationResult(req);
         if(!error.isEmpty()){
             return res.status(442).jsonp(error.array());
         }
-    
-    };
 
+};
 exports.find = (req,res) => {
 
-        if(req.params.id){
-            const id = req.params.id;
-            console.log(id);
-            user.findOne({ id: id})
-            .then(data => {
-                if(!data){
-                    res.status(404).send({message: "User was not fund"});
-                } else{
-                    qrcode.toDataURL(id,(err,src) =>{
-                        res.render('view', {qr_code: src, id: id, userdata: data}); 
-                     });
-                }
-            });
-        } else{
-        user.find()
-        .then(user => {
-            res.send(user);
-        })
-        .catch(err => {
-            res.status(500).send({message: err.message ||"the current user is not fund!"});
-        })};
-    
-    };
+  if(req.params.id){
+      const id = req.params.id;
+      console.log(id);
+      user.findOne({ id: id})
+      .then(data => {
+          if(!data){
+              res.status(404).send({message: "User was not fund"});
+          } else{
+              qrcode.toDataURL(id,(err,src) =>{
+                  res.render('view', {qr_code: src, id: id, Nachname: data.Nachname,  date: data.date,  Uhrzeit: data.Uhrzeit}); 
+               });
+          }
+      });
+  } else{
+ res.send('no User was fund');
+  };
 
-    exports.login =   (req, res)=>{
-        res.render('login')
-    } 
-
- exports.rootUser = async (req,res) =>{
-        console.log(req.body);
-        let id = crypto.randomBytes(6).toString("hex");
-        try {
-            const newuser= await rootuser.findOne({
-                OTP: req.body.OTP,
-                username: req.body.email,
-                password:req.body.password
-            })
-           if(newuser){
-               const token = jwt.sign(
-                {
-                    email: newuser.name,
-                }
-               , 'secret123')
-                return res.json({status: 'okay' , user: token})
-           }
-        } catch (error) {
-            res.send(error)
-        }
-        
-
-        const error = validationResult(req);
-        if(!error.isEmpty()){
-            return res.status(442).jsonp(error.array());
-        }
-    };
+};

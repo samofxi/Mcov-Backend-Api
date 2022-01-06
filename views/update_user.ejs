@@ -1,0 +1,83 @@
+
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+  <!-- Main Site -->
+  <main id="site-main">
+    <div class="container">
+        <div class="box-nav d-flex justify-between">
+           <div class="filter">
+               <a href="/"><i class="fas fa-angle-double-left"></i> All Users</a>
+           </div>
+        </div>
+        <div class="form-title text-center">
+            <h2 class="text-dark">Update User</h2>
+            <span class="text-light">Use the below form to Update an account</span>
+        </div>
+
+        <!-- add user form -->
+         <!-- form handling -->
+         <form  method="POST" id="update_user">
+            <div class="new_user">
+                <div class="form-group">
+                    <input type="hidden" name="_id" value="<%= user._id%>">
+                    <input type="hidden" name="qr_id" value="<%= user.id%>">
+                    <label for="Nachname" class="text-light">Nachname</label>
+                    <input type="text" name="Nachname" value="<%= user.Nachname %>" placeholder="Mark Stoenis">
+                </div>
+                <div class="form-group">
+                    <label for="Vorname" class="text-light">Vorname</label>
+                    <input type="text" name="Vorname" value="<%= user.Vorname %>" placeholder="Mark Stoenis">
+                </div>
+                <div class="form-group">
+                    <label for="birthday" class="text-light">Geburtsdatum</label>
+                    <input type="text" name="birthday" value="<%= user.birthday %>" placeholder="Mark Stoenis">
+                </div>
+                <div class="form-group">
+                    <label for="Strasse" class="text-light">Straße</label>
+                    <input type="text" name="Strasse" value="<%= user.Strasse %>" placeholder="Mark Stoenis" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="Postleitzahl" class="text-light">Postleitzahl</label>
+                    <input type="text" name="Postleitzahl" value="<%= user.Postleitzahl %>" placeholder="Mark Stoenis" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="Ort" class="text-light">Ort</label>
+                    <input type="text" name="Ort" value="<%= user.Ort %>" placeholder="Mark Stoenis" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="Email" class="text-light" >Email</label>
+                    <input type="text" name="email" value="<%= user.email %>" placeholder="example@gmail.com" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="Ergebnis" class="text-light">Ergebnis</label>
+                    <div class="radio inline">
+                        <input type="radio" id="radio-2" name="Ergebnis" value="negativ" <%= user.Ergebnis == 'negativ'?'checked':'' %>>
+                        <label for="radio-2" class="radio-label">negativ</label>
+                    </div>
+                    <div class="radio inline">
+                        <input type="radio" id="radio-3" name="Ergebnis" value="positv" <%= user.Ergebnis == 'positv'?'checked':'' %>>
+                        <label for="radio-3" class="radio-label">positv</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <input type="hidden" id="radio-5" name="status" value="checked-out">
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <button type="submit" class="btn text-dark update">Ergebnis abschicken</button>
+                </div>
+        
+            </div>
+        </form>
+       
+    </div>
+</main>
+<!-- /Main Site -->
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

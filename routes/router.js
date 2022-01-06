@@ -8,14 +8,11 @@ const urlencodeParser = bodyParser.urlencoded({extended:false});
  * @description Root Route
  * @method GET 
  */
-route.get('/termin-buchen', services.homeRoutes);
-route.post('/alletermine', services.find);
+route.get('/', services.homeRoutes);
 route.get('/termin/:id', services.find);
-route.get('/login',urlencodeParser, services.login);
-route.post('/login', urlencodeParser,[check('','wählen Sie bitte eine Uhrzeit!').exists()], services.rootUser);
-route.post('/termin-buchen', urlencodeParser, 
+route.post('/', urlencodeParser, 
 [check('Uhrzeit','wählen Sie bitte eine Uhrzeit!').exists()],services.neuUser);
 
-route.get('/termin-buchen', services.homeRoutes);
+route.get('/', services.homeRoutes);
 
 module.exports = route
