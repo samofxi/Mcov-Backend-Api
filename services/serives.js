@@ -24,6 +24,9 @@ exports.neuUser = async (req,res,next) =>{
         let id = crypto.randomBytes(6).toString("hex");
         let birthday =  `${req.body.birth_date_day}.${req.body.birth_date_month}.${req.body.birth_date_year} `
         console.log(birthday);
+        let olduser = await user.findOne({ Nachname: req.body.Nachname, Vorname: req.body.Vorname, email:req.body.email})
+        if(!olduser){
+            
         try {
             const newuser= await user.create({
                 id: id,
@@ -41,6 +44,7 @@ exports.neuUser = async (req,res,next) =>{
             }
             )
             .then(function(data) {qrcode.toDataURL(id,(err,src) =>{
+                setTimeout(function(){},10);
                 res.redirect(`https://termin.mcov.de/termin/${id}`)
              })});
              let code = await qrcode.toDataURL(id);
@@ -87,10 +91,25 @@ exports.neuUser = async (req,res,next) =>{
         if(!error.isEmpty()){
             return res.status(442).jsonp(error.array());
         }
+        }else{
+            if(olduser.date != req.body.date){
+                user.findByIdAndUpdate(olduser._id, {date: req.body.date, Uhrzeit:req.body.Uhrzeit} , {findByIdAndUpdate: false})
+                .then(data => {
+                    if(!data){
+                        res.status(404).send(`can't find the current User in the database ${id}. User not fund!`)
+                    }else{
+                        res.redirect(`https://termin.mcov.de/termin/${olduser.id}`)
+                    }
+                }).catch(err => {
+                    res.status(500).send({message: "Error with update Method. Please try again later!"})
+                })
+            }else{
+                res.redirect(`https://termin.mcov.de/termin/${olduser.id}`)
+            }
 
+        }
 };
 exports.find = (req,res) => {
-
   if(req.params.id){
       const id = req.params.id;
       console.log(id);
@@ -105,7 +124,7 @@ exports.find = (req,res) => {
           }
       });
   } else{
- res.send('no User was fund');
+    res.render('view', {qr_code: 'no data' , id: 'no data' , Nachname: 'no data' ,  date: 'no data' ,  Uhrzeit: 'no data' })
   };
 
 };

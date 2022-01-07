@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const user = new mongoose.Schema({
-    id:{type:String, required:true},
+    id:{type:String, required:true, unique:true},
     Testart:{type:String, required:true},
     date:{type:String, required:true},
     Uhrzeit:{type:String, required:true},
@@ -13,7 +13,7 @@ const user = new mongoose.Schema({
     Strasse:{type:String, required:true},
     Postleitzahl:{type:String, required:true},
     Ort:{type:String, required:true},
-    status:{type:String, required:true},
+    status:{type:String, required:true}
 
 }
 )

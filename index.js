@@ -15,7 +15,6 @@ app.use(cors());
 app.use(express.json());
 app.use('/css', express.static(path.resolve(__dirname, "assets/css")));
 app.use('/img', express.static(path.resolve(__dirname, "assets/img")));
-app.use('/js', express.static(path.resolve(__dirname, "assets/js")));
 
 app.use('/css-1', express.static(path.resolve(__dirname, "views")));
 app.use('/', require('./routes/router'));

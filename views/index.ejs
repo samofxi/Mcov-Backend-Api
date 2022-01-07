@@ -14,7 +14,7 @@
 </head>
 <body>
   <div class="form-style-5">
-    <form action="/" method="POST">
+    <form action="/" method="POST" name="contact-form" onsubmit="submitForm()">
     <fieldset>
     <legend><span class="number">1</span> Termin buchen</legend>
     <label for="Testart">Testart:</label>
@@ -50,11 +50,11 @@
                                     <option value="07:31">07:31 Uhr</option>
                                     <option value="07:32">07:32 Uhr</option>
                                     <option value="07:33">07:33 Uhr</option>
-                                    <option value="747038">07:35 Uhr</option>
-                                    <option value="747039">07:36 Uhr</option>
-                                    <option value="747040">07:37 Uhr</option>
-                                    <option value="747041">07:38 Uhr</option>
-                                    <option value="747042">07:39 Uhr</option>
+                                    <option value="07:35">07:35 Uhr</option>
+                                    <option value="07:36">07:36 Uhr</option>
+                                    <option value="07:37">07:37 Uhr</option>
+                                    <option value="07:38">07:38 Uhr</option>
+                                    <option value="07:39">07:39 Uhr</option>
                                     <option value="747044">07:41 Uhr</option>
                                     <option value="747045">07:42 Uhr</option>
                                     <option value="747050">07:47 Uhr</option>
@@ -604,7 +604,16 @@
     </form>
     </div>
     <script>
-            date.min = new Date().toISOString().split("T")[0];
-        </script>
+      window.addEventListener( "pageshow", function ( event ) {
+        var historyTraversal = event.persisted || 
+                         ( typeof window.performance != "undefined" && 
+                              window.performance.navigation.type === 2 );
+        if ( historyTraversal ) {
+    // Handle page restore.
+    window.location.reload();
+      }
+    });
+
+    </script>
 </body>
 </html>
