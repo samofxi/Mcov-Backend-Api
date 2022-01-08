@@ -604,6 +604,9 @@
     </form>
     </div>
     <script>
+      date.min = new Date().toISOString().split("T")[0];
+  </script>
+    <script>
       window.addEventListener( "pageshow", function ( event ) {
         var historyTraversal = event.persisted || 
                          ( typeof window.performance != "undefined" && 
@@ -613,7 +616,6 @@
     window.location.reload();
       }
     });
-
     </script>
 </body>
 </html>
