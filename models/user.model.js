@@ -9,6 +9,7 @@ const user = new mongoose.Schema({
     Vorname:{type:String, required:true},
     Nachname:{type:String, required:true},
     email:{type:String, required:true},
+    Telefonnummer:{type:String, required:true},
     birthday:{type:String, required:true},
     Strasse:{type:String, required:true},
     Postleitzahl:{type:String, required:true},
