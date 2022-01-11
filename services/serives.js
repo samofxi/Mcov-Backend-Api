@@ -21,7 +21,7 @@ exports.homeRoutes =   (req, res)=>{
 } 
 exports.neuUser = async (req,res,next) =>{
         console.log(req.body);
-        let id = crypto.randomBytes(6).toString("hex");
+        let id = Date.now();
         let birthday =  `${req.body.birth_date_day}.${req.body.birth_date_month}.${req.body.birth_date_year} `
         console.log(birthday);
         let olduser = await user.findOne({ Nachname: req.body.Nachname, Vorname: req.body.Vorname, email:req.body.email})
