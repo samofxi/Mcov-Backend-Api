@@ -18,7 +18,6 @@ const createAccountLimiter = rateLimit({
 const PORT = process.env.PORT || 8080;
 connectDB();
 const app = express();
-app.set('trust proxy', 1);
 app.set('view engine', 'ejs');
 app.use(createAccountLimiter);
 const urlencodeParser = bodyParser.urlencoded({ extended: false });
