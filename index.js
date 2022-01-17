@@ -12,7 +12,7 @@ const createAccountLimiter = rateLimit({
     max: 10, // Limit each IP to 5 create account requests per `window` (here, per hour)
     message:
         'von diesem Geräte dürfen keine weitere Termine erstellt werden, da Sie Ihren Limit erreicht haben. Versuchen Sie es nach einer Stunde wieder oder verwenden Sie ein anderes Gerät!',
-    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    standardHeaders: false, // Return rate limit info in the `RateLimit-*` headers
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
 const PORT = process.env.PORT || 8080;
