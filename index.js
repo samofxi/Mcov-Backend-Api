@@ -9,7 +9,6 @@ const rateLimit = require('express-rate-limit')
 
 const createAccountLimiter = rateLimit({
     windowMs: 60 * 60 * 1000, // 1 hour
-    delayAfter: 5,
     max: 10, // Limit each IP to 10 create account requests per `window` (here, per hour)
     message:
         'von diesem Geräte dürfen keine weitere Termine erstellt werden, da Sie Ihren Limit erreicht haben. Versuchen Sie es nach einer Stunde wieder oder verwenden Sie ein anderes Gerät!',
